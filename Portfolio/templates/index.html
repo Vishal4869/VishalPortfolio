@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% load static %}
+        <meta charset="utf-8">
+        <title>Vishal Umtol Portfolio</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="Free Website Template" name="keywords">
+        <meta content="Free Website Template" name="description">
+
+        <!-- Favicon -->
+        <link href="{% static 'img/favicon.ico' %}" rel="icon">
+
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+        <!-- CSS Libraries -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+        <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+        <link href="{% static 'lib/lightbox/css/lightbox.min.css' %}" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    </head>
+
+    <body data-spy="scroll" data-target=".navbar" data-offset="51">
+        <!-- Nav Bar Start -->
+        <div class="navbar navbar-expand-lg bg-light navbar-light">
+            <div class="container-fluid">
+                <a href="{% url 'index' %}" ><img class="rounded " style="margin:-50px 0;padding:-10px;"  src="{%static 'img/vislogo.png'%}"  
+                    alt="" >  </a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav ml-auto">
+                        <a href="#home" class="nav-item nav-link active">Home</a>
+                        <a href="#about" class="nav-item nav-link">About</a>
+                        <a href="#skills" class="nav-item nav-link">Skills</a>
+                        <a href="#experience" class="nav-item nav-link">Experience</a>
+                        <a href="#projects" class="nav-item nav-link">Projects</a>
+                        <a href="#portfolio" class="nav-item nav-link">Certificates</a>
+                        <a href="#photography" class="nav-item nav-link">Photography</a>
+                        <a href="#contact" class="nav-item nav-link">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Nav Bar End -->
+
+
+        <!-- Hero Start -->
+        <div class="hero" id="home">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="hero-content">
+                            <div class="hero-text">
+                                <p>I'm</p>
+                                <h1>Vishal Umtol</h1>
+                                <h2></h2>
+                                <div class="typed-text">Python Developer, Web Developer, Aspiring to Full Stack Developer</div>
+                            </div><br>
+                            <div class="hero-btn2">
+                                <a class="btn btn2"  data-toggle="modal"data-target="#resume">My Resume</a>
+                                <a class="btn btn2" data-toggle="modal" data-target="#contactme">Contact Me</a>
+                                
+                            </div>
+                            <div class="footer wow fadeIn" data-wow-delay="0.3s">
+
+                                <div class="footer-social mx-4 mb-2 " >
+
+                                    <a class="btn2" href="">Follow Me: </a>
+                                    <a href="https://www.linkedin.com/in/vishal-umtol"target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="https://github.com/Vishal4869"target="_blank"><i class="fab fa-github"></i></a>
+                                    <a href="https://www.instagram.com/v1sha1_jpeg/"target="_blank"><i class="fab fa-instagram"></i></a>
+                                    
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 d-none d-md-block">
+                        <div class="hero-image ">
+                            <img  src="{% static 'img/vishal .jpg' %}" alt="Hero Image">
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
+       
+        <!-- Hero End -->
+
+        <!--Contact Form-->
+
+        <div class="modal fade " id="contactme" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+            <div class="modal-dialog modal-lg " role="document">
+                <div class="modal-content pro">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Contact Me :</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">X</span>
+                        </button>
+                    </div>
+
+                    <form method="POST" >
+                    <div class="modal-body">
+
+                        
+                        {%csrf_token%}
+                        {{contact_form}}
+                        <br>
+                       <p> Enter The Captcha: <p>
+                        {{form.captcha}}
+                            
+                       
+
+                    </div>
+                
+
+                    <div class="modal-footer justify-content-center">
+                        <input class="btn btn-outline-primary" type="submit" value="submit">
+                        
+                    </div>
+                    </form>
+
+
+                </div>
+            </div>
+
+        </div>
+
+
+        <!--Resume-->
+
+        <div class="modal fade " id="resume" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+            <div class="modal-dialog modal-xl " role="document">
+                <div class="modal-content prow">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="exampleModalLabel">Resume: </h3>
+
+                        <div class="col-10 modal-title text-center">
+                            <a class="btn btn-info" href="{{resume.resume_pdf.url}}" download>Download</a>
+                            
+                        </div>
+
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">X</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+
+                    <img src="{{resume.resume_image.url}}" class="card-img-top border border-secondary pro" alt="Resume" >
+
+
+                    </div>
+                
+
+                    <div class="modal-footer justify-content-center">
+                        <a class="btn btn-info" href="{{resume.resume_pdf.url}}" download>Download</a>
+                        
+                    </div>
+
+
+
+                </div>
+            </div>
+
+        </div>
+
+    <!--Test Section-->
+
+
+
+
+
+    <!--Test Section-->
+
+        <!-- Service Start -->
+        <div class="service" id="about">
+            <div class="container">
+                <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+                    <p>What I do</p>
+                    <h6>From understanding your requirements, designing a blueprint and delivering the final product, I do everything that falls in between these lines.</h6>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.0s">
+                        <div class="service-item">
+                            <div class="service-icon">
+                                <i class="fa fa-laptop"></i>
+                            </div>
+                            <div class="service-text">
+                                <h3>Web Devlopment</h3>
+                                <p>
+                                    If you are looking for a developer who’ll take over the research and development of your website, I am a well-established professional to help you with this.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="service-item">
+                            <div class="service-icon">
+                                <i class="fa fa-laptop-code"></i>
+                            </div>
+                            <div class="service-text">
+                                <h3>Python Programming</h3>
+                                <p>
+                                    An effective python programming skills,that include building Desktop GUI,Django Webapp and Image Processing.I can do any type of coding as per requirement
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="service-item">
+                            <div class="service-icon">
+                                <i class="fas fa-server"></i>
+                            </div>
+                            <div class="service-text">
+                                <h3>Deployment</h3>
+                                <p>
+                                    If you are looking for all-rounder who can do deployment of web apps using nginx,apache ,gunicorn etc.and knowledge of hosting platform such as Heroku,Azure,Python Anywhere etc.Count on me
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <!-- Service End -->
+        
+        <hr>
+
+        <!-- skill Start -->
+        <br><br>
+{% comment %} 
+        <div class="about wow fadeInUp " data-wow-delay="0.1s" id="skills">
+            <div class="container-fluid">
+                <div class="section-header text-center wow zoomIn " data-wow-delay="0.1s">
+                    
+                    <h3>--- Professional Skills ---</h3>
+        
+                </div>
+                <div class="prow p-4">
+                <div class="card aos-init aos-animate " data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+                    <div class="row ">
+        
+                        <div class="col-lg-6 col-md-6">
+                            <div class="about-content">
+        
+        
+                                <div class="skills">
+                                    <div class="skill-name">
+                                        <p>Python</p>
+                                        <p>90%</p>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0"
+                                            aria-valuemax="100"></div>
+                                    </div>
+                                    <div class="skill-name">
+                                        <p>Django</p>
+                                        <p>80%</p>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0"
+                                            aria-valuemax="100"></div>
+                                    </div>
+                                    <div class="skill-name">
+                                        <p>HTML,CSS,JavaScript</p>
+                                        <p>70%</p>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0"
+                                            aria-valuemax="100"></div>
+                                    </div>
+                                    <div class="skill-name">
+                                        <p>Azure/AWS</p>
+                                        <p>60%</p>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0"
+                                            aria-valuemax="100"></div>
+                                    </div>
+        
+                                </div>
+        
+                            </div>
+                        </div>
+        
+                        <div class="col-lg-6">
+                            <div class="about-content">
+        
+        
+                                <div class="skill-name">
+                                    <p>Git/Github/Bitbucket</p>
+                                    <p>70%</p>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0"
+                                        aria-valuemax="100"></div>
+                                </div>
+        
+                                <div class="skill-name">
+                                    <p>SQL Database</p>
+                                    <p>70%</p>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0"
+                                        aria-valuemax="100"></div>
+                                </div>
+                                <div class="skill-name">
+                                    <p>Linux</p>
+                                    <p>80%</p>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0"
+                                        aria-valuemax="100"></div>
+                                </div>
+                            </div>
+        
+                        </div>
+        
+        
+                    </div>
+        
+        
+                </div>
+                </div>
+            </div>
+        </div> {% endcomment %}
+ 
+        <!-- About End -->
+
+
+        <div class="about wow fadeInUp p-5" data-wow-delay="0.1s" id="skills">
+            <div class="section-header text-center wow zoomIn " data-wow-delay="0.1s">
+                    
+                <h3>--- Professional Skills ---</h3>
+    
+            </div>
+
+            <div class="container px-4" align="center">
+                <div class="prow">
+                    <div class="card aos-init aos-animate " data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+
+                        <div class="contact wow fadeInUp p-5" data-wow-delay="0.1s" id="skills">
+
+                            <button type="button" class="btn btn-outline-primary">Python</button>
+                            <button type="button" class="btn btn-outline-success">Django</button>
+                            <button type="button" class="btn btn-outline-danger">HTML</button>
+                            <button type="button" class="btn btn-outline-warning">CSS</button>
+                            <button type="button" class="btn btn-outline-info">JavaScript</button>
+                            <button type="button" class="btn btn-outline-light">SQL Database</button>
+                            <br><br>
+                            <button type="button" class="btn btn-outline-primary">Azure</button>
+                            <button type="button" class="btn btn-outline-success">AWS</button>
+                            <button type="button" class="btn btn-outline-danger">Git/Github/Bitbucket</button>
+                            <button type="button" class="btn btn-outline-warning">SQL Database</button>
+                            <button type="button" class="btn btn-outline-info">Linux</button>
+                            
+                        </div>    
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <hr>
+        
+         <!-- Experience Start -->
+        <div class="experience" id="experience">
+            <div class="container">
+                <header class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+                    <h2>--- Working Experience ---</h2>
+                </header>
+                <div class="timeline">
+                    <div class="timeline-item left wow slideInLeft" data-wow-delay="0.1s">
+                        <div class="timeline-text">
+                            <div class="timeline-date">2021 - Present</div>
+                            <h2>Python Developer</h2>
+                            <h4>ADEO Distinction and Dimensions</h4>
+                            <p>
+                                I am responsible for all the in-house and client-based web development assignments. I take pride
+                                in having helped the best of clients and getting maximum ratings for the company.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right wow slideInRight" data-wow-delay="0.1s">
+                        <div class="timeline-text">
+                            <div class="timeline-date">2020 -2021</div>
+                            <h2>Programming Associate</h2>
+                            <h4>On My Own Technology</h4>
+                            <p>
+                                Worked as Programming associate.Helped in Technical paper publishing as coder.
+                                Contributed in award wining WRO project in Hungary
+                            </p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left wow slideInLeft" data-wow-delay="0.1s">
+                        <div class="timeline-text">
+                            <div class="timeline-date">2019 - 2020</div>
+                            <h2>Cloud and Network Administrator</h2>
+                            <h4>On My Own Technology</h4>
+                            <p>
+                                Interact with client for Requirement Analysis, Upgrading,
+                                configuring and debugging existing systems
+                                Managing Azure,Gsuite portal
+                            </p>
+                        </div>
+                    </div>
+        
+                </div>
+            </div>
+        </div>
+        <!-- Job Experience End -->
+        
+
+ <!-- Projects -->
+    <div class="contact wow fadeInUp" data-wow-delay="0.1s" id="projects">
+        <div class="container">
+            <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+                <br>
+                <h2 style="color:white;">--- My Projects ---</h2>
+            </div>
+    
+            <div class="row">
+                
+                {% for p in projects %}
+                    <div class="cols-1 cols-md-3 col-lg-4 my-3">
+                        <div class="card formset_id h-100 p-2">
+                            <img src="{{p.pic.url}}" class="card-img-top border border-secondary pro  p-2" alt="{{p.title}}" width="400" height="300">
+        
+                            <div class="card-body">
+                                <h5 class="card-title">{{p.title}}</h5>
+                                <p class="card-text">{{p.short_description}}</p>
+                                
+        
+                            </div>
+                            <div class="modal-footer justify-content-center">
+                                <a class="btn btn-outline-info btn-sm" href="" data-toggle="modal"
+                                    data-target="#project-{{p.id}}">Details </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="modal fade " id="project-{{p.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog " role="document">
+                            <div class="modal-content prow">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">{{p.title}}</h5>
+                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">X</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                
+                                    <img src="{{p.pic.url}}" class="card-img-top border border-secondary pro" alt="{{p.title}}"  width="400" height="300">
+                                    <br>
+                                    <div class="card-body">
+                                        <p class="card-text">{{p.description}}</p>
+                                            <br>
+                                        {% if p.client is not null %}
+                                        <h6>{{p.client}}</h6>
+                                        {% endif %}
+
+                                        {% if p.glink is not null %}
+                                        <h6>{{p.glink}}</h6>
+                                        {% endif %}
+
+                
+                                    </div>
+                                </div>
+                            
+                                {% if p.vlink is not null %}
+                                <div class="modal-footer justify-content-center">
+                                    <a class="btn btn-outline-info" href="{{p.vlink}}" target="_blank">Visit </a>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                
+                    </div>
+                   
+                {% endfor %}
+
+
+            </div>        
+
+        </div>
+    </div>
+   
+    <!-- Certifications Start -->
+    <div class="portfolio" id="portfolio">
+        <div class="container">
+            <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+
+            <h2 class="ribbon">--- My Certifications ---</h2>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <ul id="portfolio-filter">
+                        <li data-filter="*" class="filter-active">All</li>
+                        <li data-filter=".programming">Programming</li>
+                        <li data-filter=".cloud">Cloud</li>
+                        <li data-filter=".networking">Networking</li>
+                        <li data-filter=".other">Other</li>
+                    </ul>
+                </div>
+            </div>
+    
+            <div class="row portfolio-container">
+                {% for c in cert %}
+                <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item {{c.filter}} ">
+                    <div class="portfolio-wrap">
+                        <div class="img border border-secondary pro">
+                            <img src="{{c.pic.url}}" alt="{{c.title}}" width="100%" height="300" style="object-fit: fill;">
+                        </div>
+                        
+                        <div class="portfolio-text rounded">
+                            
+                            <h6 ><b> {{c.title}}</b></h6>
+                            <a class="btn2 mr-0 ml-auto" href="{{c.pic.url}}" 
+                                data-lightbox="portfolio"><i class="fas fa-search-plus"></i>
+                            </a>
+                        
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Certifications End -->
+
+    <!-- Photography-->
+    <div class="contact wow fadeInUp" data-wow-delay="0.1s" id="photography">
+        <div class="container p-4">
+            <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+                <h2 style="color:white;">--- My Photography ---</h2>
+            </div>
+            <div>
+                <iframe src="https://snapwidget.com/embed/965038" style="border:none;height:25rem;width:100%;"></iframe>
+            </div>
+    
+            <div class="d-flex justify-content-center">
+                <button class="btn btn-outline-light btn-icon-split" type="button" data-toggle="collapse"
+                    data-target="#demo">
+                    Show All <i class="fas fa-angle-double-down"></i> </button>
+            </div>
+    
+            <div id="demo" class="collapse">
+                <br>
+                <iframe src="https://snapwidget.com/embed/965047" style="border:none;height:100rem;width:100%;"> </iframe>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Photography END-->
+    
+    <!-- Footer Start -->
+    <div class="footer wow fadeIn" data-wow-delay="0.3s">
+        <div class="container-fluid">
+            <div class="container">
+                <div class="footer-info" id="footer1">
+                    <h2>Vishal Umtol</h2>
+                    <h3>Mumbai, Maharashtra,India</h3>
+    
+                    <div class="container copyright" id="contact">
+                        <h3>Interested to work with me?</h3>
+                        <p>Drop a message to : <u>vaumtol@gmail.com</u></p>
+    
+                        <div class="footer-social">
+                            <a href="https://www.linkedin.com/in/vishal-umtol" target="_blank"><i
+                                    class="fab fa-linkedin-in"></i></a>
+                            <a href="https://github.com/Vishal4869" target="_blank"><i class="fab fa-github"></i></a>
+                            <a href="https://www.instagram.com/v1sha1_jpeg/" target="_blank"><i
+                                    class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="container copyright">
+            <p>&copy; <a href="#">vishalumtol.herokuapp.com</a>, All Right Reserved | Designed By Vishal Umtol</a></p>
+        </div>
+    
+    </div>
+
+        <!-- Footer End -->
+        
+        
+        <!-- Back to top button -->
+        <a href="#" class="btn2 back-to-top"><i class="fa fa-chevron-up"></i></a>
+        
+        
+        <!-- Pre Loader -->
+        <div id="loader" class="show">
+            <div class="loader"></div>
+        </div>
+
+        
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+        <script src="{% static 'lib/wow/wow.min.js' %}"></script>
+        <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
+        <script src="{% static 'lib/typed/typed.min.js' %}"></script>
+        <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+        <script src="{% static 'lib/isotope/isotope.pkgd.min.js' %}"></script>
+        <script src="{% static 'lib/lightbox/js/lightbox.min.js' %}"></script>
+        
+        <!-- Contact Javascript File -->
+        <script src="{% static 'mail/jqBootstrapValidation.min.js' %}"></script>
+        <script src="{% static 'mail/contact.js' %}"></script>
+
+        <!-- Template Javascript -->
+        <script src="{% static 'js/main.js' %}"></script>
+
+        <!--for card color-->
+        <script>
+
+
+            const j=0;
+            let i=1
+          
+            document.querySelectorAll(".formset_id").forEach(mywr)
+          
+            function mycard(el){
+          
+              var items=[1,2,3,4,5,6]
+              var item = items[Math.floor(Math.random()*items.length)];
+          
+              el.id = `form${item}-id`
+            }
+          function mywr(element,index,arr){
+            
+              element.id = `form${i}-id`
+          
+              i++;
+              if (i > 6) {
+                i = 1;
+              }
+              
+            }
+          
+          
+            function urlreset() {
+              window.location.href="/"
+            }
+          
+          </script>
+          
+
+
+
+    </body>
+</html>
+
+
+
+  

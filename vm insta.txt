@@ -1,0 +1,22 @@
+/home/ubuntu/myprojectdir/portfolio
+
+ssh ubuntu@140.238.240.24
+
+sudo systemctl restart gunicorn
+sudo systemctl restart nginx
+
+source myprojectenv/bin/activate
+
+sudo nano /etc/nginx/sites-enabled/myproject
+
+sudo chown -R ubuntu:www-data portfolio/
+sudo chmod -R 755 portfolio/
+
+
+sudo iptables -I INPUT 6 -m state --state NEW -p tcp --dport 80 -j ACCEPT
+sudo netfilter-persistent save
+sudo systemctl restart nginx
+
+
+/portfolio/staticfiles
+
