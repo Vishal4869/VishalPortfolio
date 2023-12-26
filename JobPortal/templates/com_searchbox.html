@@ -1,0 +1,103 @@
+<div class="container-fluid" id="uppersearch">
+  <br />
+  <div id="searchbox">
+    <form
+      method="get"
+      action="{% url 'search' %}"
+      onc
+      class="form my-lg-3 my-3 mx-3"
+    >
+      <div class="typing-demo">Search Faster,Search Better !!!</div>
+
+      <div class="row align-items-center">
+        <div class="col-7">
+          <input
+            class="form-control mr-sm-2 my-2"
+            type="search"
+            placeholder="Skills,Companies,Designation"
+            aria-label="Search"
+            name="search1"
+            id="search1"
+            align="center"
+          />
+        </div>
+
+        <div class="col-3">
+          <input
+            class="form-control mr-sm-2 my-2"
+            type="search"
+            placeholder="Location"
+            aria-label="Search"
+            name="search2"
+            id="search2"
+            align="center"
+          />
+        </div>
+        <div class="col-2">
+          <button class="btn btn-success mr-sm-2 my-2" type="submit">
+            <b>Search </b>
+          </button>
+        </div>
+      </div>
+    </form>
+    <br />
+
+    <ul class="nav">
+      <li class="nav-item">
+        <a
+          class="nav-link active"
+          style="color: white"
+          aria-current="page"
+          href="{% url 'alljobs' %}"
+          >All Jobs</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'allcategory' %}" style="color: white">Jobs by Category</a>
+      </li>
+      <li class="nav-item" style="color: white">
+        <a class="nav-link" href="{% url 'jobcategory' 'Web, Mobile, and Software Development'%}" style="color: white">Software Development</a>
+      </li>
+      <li class="nav-item" style="color: white">
+        <a class="nav-link" href="{% url 'jobcategory' 'Customer Service' %}" style="color: white">Customer Service</a>
+      </li>
+    </ul>
+  </div>
+  <br />
+</div>
+
+<div class="container" >
+  <div class="row align-items-center rbx">
+
+    <div class="col-1">
+      <h6>Min.Exp: </h6>
+    </div> 
+    <div class="col-1 colorbx bx0"> 
+      <h4 >0</h4>
+    </div>
+    <div class="col-1 colorbx bx1"> 
+      <h4>1</h4>
+    </div>  
+    <div class="col-1 colorbx bx2"> 
+      <h4>2-4</h4>
+    </div>  
+    <div class="col-1 colorbx bx3"> 
+      <h4>5</h4>
+    </div>  
+    <div class="col-1 colorbx bx4"> 
+      <h4>6-7</h4>
+    </div>    
+    <div class="col-1 colorbx bx5"> 
+      <h4>8-9</h4>
+    </div>  
+    <div class="col-1 colorbx bx6"> 
+      <h4>10-14</h4>
+    </div>  
+    <div class="col-1 colorbx bx7"> 
+      <h4>15-19</h4>
+    </div>     
+    <div class="col-1 colorbx bx8"> 
+      <h4>20+</h4>
+    </div>      
+  </div> 
+</div>

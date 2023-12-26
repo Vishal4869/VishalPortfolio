@@ -1,0 +1,48 @@
+{% extends 'basic.html' %}
+{% block title%} Account setting {% endblock %}
+{% block css %}
+{% include 'mfstyle.css' %}
+{% endblock %}
+
+{% block body %}
+{% load static %}
+<br>
+
+<div class="container">
+<div class="row">
+	<div class="col-md-5">
+		<div class="card card-body pro">
+			<a class="btn bord" href="{% url 'recruiterPage' %}"> &#8592; Back to Profile</a>
+			<hr>
+			<h3 style="text-align: center">Account Settings</h3>
+			<hr>
+			<p style="text-align:center;"> <img class="profile-pic" src="{{request.user.company.company_logo.url}}" style="text-align:center; width:40%; border-radius= 50%" ></p>
+			<a href="{% url 'change_password' %}"align='center' target="_blank"><button type="button"class="btn bord mx-1"><i class="fas fa-key"></i> Reset Password</button></a>
+		
+		</div>
+		
+	</div>
+
+
+
+
+
+	<div class="col-md-7">
+		<div class="card card-body pro">
+			<div class="d-flex justify-content-center form_container">
+			
+				<form method="POST" action="" enctype="multipart/form-data">
+					{% csrf_token %}
+					
+					{{form.as_p}}
+			
+				<input class="btn bord" type="submit" name="CompanyInformation" value="Save">
+				</form>
+			</div>
+
+		</div>
+	</div>
+</div>
+</div>
+
+{% endblock %}

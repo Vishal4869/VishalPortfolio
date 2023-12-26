@@ -1,0 +1,149 @@
+{% extends 'basic.html' %}
+{% block title%} Recruiter {% endblock %}
+{% block css %}
+{% include 'mfstyle.css' %}
+    
+
+{% endblock %}
+
+{% block body %}
+{% load static %}
+
+{% include 'can_searchbox.html' %}
+
+
+<div class="container ">
+<br><br>
+
+  <div class="row">
+
+    <div class="col-md-4">
+      <div class="card card-body pro">
+        <p align='center'><img class="pro2 imgb " src="{{request.user.company.company_logo.url}}" alt="{{request.user.company.company_name}}" style="width:145px ;height=145px; border-radius= 50%"  ></p>
+        <a class="btn bord mx-5"  href="{% url 'raccount' %}"><i class="far fa-edit"></i> Edit Profile</a>
+      </div>
+    </div>
+   
+
+    <div class="col-md-4">
+      <div class="card card-body pro">
+        <p><h3 style="text-align: center">Total Jobs Created:</h3></p>
+        <p><h1 style="text-align: center"> {{ usrjobstotal }}</h1></p>
+        <span align='center'><a class="btn bord mx-2" href="#rtbjc"> View all</a>
+        <a class="btn bord " href="{% url 'jobcreate' %}"> Create Jobs</a></span>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card card-body pro">
+        <p><h3 style="text-align: center">Applicant Applied:</h3></p>
+        <p><h1 style="text-align: center">{{ totalappusr }}</h1></p>
+        <a class="btn bord mx-5"   href="#cd2"> View all</a>
+      </div>
+    </div>
+  </div>
+</div>
+      
+</div>
+<br><br>
+
+
+
+
+<div class="container pro " id="cd2">
+  <h2 >Jobs Created:</h2>
+  <p align='right'><a class="btn bord  "  href="{% url 'jobcreate' %}"><i class="fas fa-plus-circle"></i> Create Jobs</a></p>
+  <div class="card-body tblcss">
+      <table class="table table-hover" id="rtbjc">
+        <thead>
+          <tr>
+              <th>Sr.No.</th>
+              <th>Job Position:</th>
+              
+              <th>Date Created:</th>
+              <th>Location</th>
+              <th>Required Experience</th>
+              <th>Salary Range:</th>
+              <th>Description:</th>
+              <th>Action:</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for u in usrjobs %}
+              <tr>
+                  <td width="1%">{{ forloop.counter }}</td>
+                  <td>{{u.job_position}}</td>
+                  
+                  <td width="12%">{{u.date}}</td>
+                  <td>{{u.Location}}</td>
+                  <td>{{u.min_experience}}-{{u.max_experience}} Years</td>
+                  <td>Rs. {{u.min_salary}}-{{u.max_salary}} /-</td>
+                  <td width="20%" ><span class="slc">{{u.job_description}}</span></td>
+                  <td width="10%"><a href="{% url 'jobedit' u.id %}" ><button type="button"class="btn  btn-sm bord " value="edit"><i class="fas fa-edit"> Edit</i></button></a>
+                   </td>
+              </tr> 
+          {% endfor %}
+        </tbody>
+      </table>
+  </div>
+</div>
+
+<br><br>
+
+
+<div class="container pro" id="cd1">
+  <h2 >Applicant applied:</h2>
+  <div class="card-body tblcss">
+    <table class="table table-hover"id="rtbca">
+      <thead>
+      <tr>
+        <th>Sr.No.</th>
+        <th>Applied Job:</th>
+        <th>Name:</th>
+        <th>Date Of Birth:</th>
+        
+        <th>Intro Video:</th>
+        <th>Gender</th>
+        <th>Contact Number</th>
+        <th>Email</th>
+        <th>Total Experience</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for position, c in bar_data %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ position }}</td>
+        <td>{{c.applicant_name}}</td>
+        <td>{{c.applicant_dob}}</td>
+        {% if c.intro %}
+          <td><a href='{{c.intro.url}}'>{{c.intro}}</a></td>
+        {% else %}
+          <td>Not submitted</td>
+        {% endif %}
+        <td>{{c.gender}}</td>
+        <td>{{c.contact_number}}</td>
+        <td>{{c.email}}</td>
+        <td>{{c.year_experience}} years,{{c.month_experience}} Months </td>
+      </tr>
+      
+      {%endfor%}
+      </tbody>
+      </table>
+</div>
+</div>
+<script>
+
+  $(document).ready(function() {
+      $('#rtbca').dataTable();
+  } );
+  
+  $(document).ready(function() {
+      $('#rtbjc').dataTable();
+  } );
+
+</script>
+
+<br>
+
+{% include 'footer.html' %}
+{% endblock %}

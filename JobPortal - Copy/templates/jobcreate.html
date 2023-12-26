@@ -1,0 +1,45 @@
+{% extends 'basic.html' %} {% block title%} Job Create {% endblock %} 
+{% block css %} {% include 'mfstyle.css' %} {% endblock %} 
+{% block body %} 
+{% load static %}
+<br />
+<div class="container">
+  <div class="row">
+    <div class="col-md-5">
+      <div class="card card-body pro">
+        <a class="btn bord" href="{% url 'recruiterPage' %}">
+          &#8592; Back to Profile</a
+        >
+        <hr />
+        <h3 style="text-align: center">Total Jobs Created:</h3>
+        <h1 style="text-align: center">{{ usrjobstotal }}</h1>
+      </div>
+    </div>
+
+    <div class="col-md-7">
+      <div class="card card-body pro">
+        <div class="d-flex justify-content-center">
+          <form method="POST" action="" enctype="multipart/form-data">
+            {% csrf_token %} {{form.as_p}}
+            <input
+              class="btn bord"
+              type="submit"
+              value="Save"
+              name="createdjob"
+            />
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %} {% block js %}
+<script>
+  {% if  msg == 'jobcreated'  %}
+  	alert("Successfully Created the Job");
+  	window.location.href="{% url 'jobcreate' %}"
+
+  {% endif %}
+</script>
+{% endblock %}

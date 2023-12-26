@@ -1,0 +1,35 @@
+
+<div class="container-fluid">
+  <div
+    class="row p-3"
+    style="background:radial-gradient(#dfe6e9,#5d6f7b);"
+
+  >
+    <div class="col-lg-10 col-12 col-md-12">
+      <br>
+      <form class="form-inline" action="{% url 'csearch' %}"
+      method="GET">{% csrf_token %}
+        <label class="text-black font-weight-bold"><h4>Search Applicant</h4></label>
+        <div class="input-group col-lg-9 col-12 m-auto">
+          
+          <input
+            type="search"
+            class="form-control p-4 border-0 "
+            placeholder="Applicant,Skills "
+            name="search1"
+            id="search1"
+          />
+          
+         
+          <button class="btn  rounded-circle bg-dark text-white ml-3" type="submit">
+            <i class="fas fa-search mx-1"></i> 
+          </button>
+        </div>
+      </form>
+      <br>
+    </div>
+
+   
+  </div>
+  <br>
+</div>

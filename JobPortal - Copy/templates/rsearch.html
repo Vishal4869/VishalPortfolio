@@ -1,0 +1,16 @@
+{% extends 'basic.html' %}
+{% block title%} Candidate Search{% endblock %}
+{% block css %}
+{% include 'mfstyle.css' %}
+{% endblock %}
+
+{% block body %}
+{% load static %}
+{% include 'can_searchbox.html' %}
+{% include 'can_cards.html' %}
+
+
+
+{% include 'footer.html' %}
+
+{% endblock %}

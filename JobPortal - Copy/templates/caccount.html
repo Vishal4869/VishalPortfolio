@@ -1,0 +1,62 @@
+{% extends 'basic.html' %}
+{% block title%} Account setting {% endblock %}
+{% block css %}
+{% include 'mfstyle.css' %}
+
+
+{% endblock %}
+
+{% block body %}
+{% load static %}
+<br>
+<div class="container">
+<div class="row">
+	<div class="col-md-5">
+		<div class="card card-body pro">
+			<a class="btn bord" href="{% url 'candidatePage' %}"> &#8592; Back to Profile</a>
+			<hr>
+			<h3 style="text-align: center">Account Settings</h3>
+			<hr>
+			<p style="text-align:center;"><img class="profile-pic imgb" src="{{request.user.candidates.profile_pic.url}}" style="text-align:center; width:145px;height:145px;border-radius= 50%" alt="profile pic"></p>
+			
+			<a href="{% url 'change_password' %}"align='center' target="_blank"><button type="button"class="btn bord mx-1"><i class="fas fa-key"></i> Reset Password</button></a>
+		
+		</div>
+		<br>
+
+		<div class="card card-body pro">
+			
+			<h3 style="text-align: center">Introduction Video</h3>
+			<hr>
+			{% if request.user.candidates.intro %}
+            <a style="color:#0000EE;"href='{{request.user.candidates.intro.url}}'align='center' target="_blank"><button type="button"class="btn bord btn-lg mx-1">Play</button></a>
+			{% else %}
+			<p align='center'>Not submitted</p>
+			{% endif %}
+		
+		</div>
+	</div>
+
+
+	<div class="col-md-7">
+		<div class="card card-body pro">
+			<div class="alert alert-warning" role="alert" align='center'>
+				Make sure to complete your profile before applying to job
+			</div>
+			
+			<div class="d-flex justify-content-center ">
+				
+				<form method="POST" action="" enctype="multipart/form-data">
+					{% csrf_token %}
+					{{form.as_table}}
+					
+				<input class="btn bord mt-2" type="submit" value='Save' name="Update Information" >
+				</form>
+			</div>
+
+		</div>
+	</div>
+</div>
+</div>
+
+{% endblock %}

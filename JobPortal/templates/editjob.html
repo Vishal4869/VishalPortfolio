@@ -1,0 +1,32 @@
+{% extends 'basic.html' %} 
+{% block title%} Edit Job {% endblock %} 
+{% block css%} {% include 'mfstyle.css' %} {% endblock %} 
+{% block body %} {% load static %}
+<br >
+<div class="container pro">
+  <span
+    ><a class="btn bord" href="{% url 'recruiterPage' %}">
+      &#8592; Go Back</a
+    ></span
+  >
+  <hr />
+  <h3 align="center">Edit Job:</h3>
+  <br />
+  <div class="container">
+    <form method="POST" action="" enctype="multipart/form-data">
+      {% csrf_token %} {{form.as_p}}
+      <br />
+      <input
+        class="btn bord"
+        type="submit"
+        value="Save"
+        name="EditJob"
+        
+        
+      />
+      <a href="{% url 'jobdelete' eid %}" ><button type="button"class="btn btn-danger mx-1 my" value="delete">Delete <i class="fas fa-trash-alt"></i></button></a>
+    </form>
+    
+</div>
+
+{% endblock %}

@@ -1,0 +1,54 @@
+<style>
+
+    
+    </style>
+    
+      <div class="container ">
+       
+        <div class="row">
+      
+            {% for c in cancard %}
+            {% if c.applicant_name is not null %}
+              <div class="col-sm-12 col-lg-5 ">
+                  
+                  <div class="pro">
+                  
+                  
+                    <div class="card-body">
+                      <h5>{{c.applicant_name}}</54><hr>
+                      <h6 class="card-title">{{c.job_position}}</h6>
+                      <p class="card-text"><b>DOB: </b>{{c.applicant_dob}}
+                      <br><b>Gender: </b>{{c.gender}}
+                      <br><b>Contact Number: </b>{{c.contact_number}}
+                      <br><b>Exp: </b>{{c.year_experience}} Years-{{c.month_experience}} Months
+                      <br><b>Email: </b>{{c.email}}</p>
+                      
+                      {% for k in li2 %}
+                          
+                        {% if c.id == k.applicant_name.id %}
+                        <p style ="color:red"><b>Already Invited for {{k.job_position}}</b></p>
+                        {% endif %}
+                      {% endfor %}    
+                      <form method="POST" action="{% url 'invite' c.id %}">
+                        {% csrf_token %}
+                      <label for="cars">Select Job:</label>
+                      <select class="dropdown-item" name="cars" id="cars">
+                        {% for u in usrjobs %}
+                        <option value="{{u.id}}">{{u.job_position}}</option>
+                        {% endfor %}
+                      </select>
+                        <input type="submit"class="btn bord" value="Invite">
+                      </form>
+                      
+                      <a href="{% url 'jobView' c.id %}" id="qv{{c.id}}" class="btn bord mr-sm-2 my-2 " >View</a>
+                    </div>
+                  </div>
+                </div>
+            {% endif %}
+          {% endfor %}
+             
+      
+        </div>
+      </div>
+    
+      

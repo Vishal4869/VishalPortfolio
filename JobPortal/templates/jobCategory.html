@@ -1,0 +1,25 @@
+{% extends 'basic.html' %}
+{% block title%} Job Category{% endblock %}
+{% block css %}
+{% include 'mfstyle.css' %}
+{% endblock %}
+
+{% block body %}
+{% load static %}
+
+{% include 'com_searchbox.html' %}
+<div class="m-4">
+	<h3>Looking for jobs in catagory <b>{{cat}}</b></h3>
+</div>
+{% if companies %}
+	{% include 'com_cards.html' %}
+{% else %}
+      <div class = "m-5 d-flex align-items-center justify-content-center" style="width:100%">
+         <div class = "center-block">
+            <h3><i>No available jobs for this catagory right now</i></h3>
+         </div>
+      </div>
+{% endif %}
+{% include 'footer.html' %}
+
+{% endblock %}

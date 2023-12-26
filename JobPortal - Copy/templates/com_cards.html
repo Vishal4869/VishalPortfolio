@@ -1,0 +1,114 @@
+<div class="container">
+
+  <div class="row">
+    {% for c in companies %}
+    {% if c.job_position is not null %}
+    <div class="cols-1 cols-md-3 col-lg-4 my-3">
+      <div class="card formset_id clr2 h-100 p-2">
+        
+        
+        <div class="card-body">
+          <h5>{{c.company_name}}</h5>
+          <hr>
+          <h5 class="card-title">{{c.job_position}}</h5>
+          <p class="card-text">Date: {{c.date| date:"F d Y"}}<br>
+            Salary: {{c.min_salary}}-{{c.max_salary}}/year
+            <br>Exp: {{c.min_experience}}-{{c.max_experience}} yrs
+            <br>Location: {{c.Location}}
+            {% comment %} <br>Disability: {{c.disability}} {% endcomment %}
+            <br>Skills: <i>{{c.skills}}</i>
+          </p>
+        </div>
+        <div class="modal-footer justify-content-start">
+          <a class="btn bord text-light" data-toggle="modal" data-target="#qv{{c.id}}">View</a>
+          {% if c.id in li %}
+          <a href="{% url 'apply' c.id %}" class="btn bord disabled">Applied</a>
+          {% else %}
+          <a href="{% url 'apply' c.id %}" class="btn bord">Apply</a>
+          {% endif %}
+        </div>
+        
+
+          <!--Job View-->
+
+          <div class="modal fade " id="qv{{c.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+              <div class="modal-dialog modal-lg " role="document">
+                  <div class="modal-content pro">
+                      <div class="modal-header">
+                          <h2 class="modal-title" id="exampleModalLabel"><b>{{c.company_name}}</b> </h2>
+                          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">X</span>
+                          </button>
+                      </div>
+  
+                      <form method="POST" >
+                      <div class="modal-body">
+  
+                        <p><h3>{{c.job_position}}</h3></p>
+                        <p><b>Salary: Rs.{{c.min_salary}}-{{c.max_salary}}/year </b></p>
+                        <p>Exp: {{c.min_experience}}-{{c.max_experience}} yrs </p>
+                        <p>Location: {{c.Location}}<p><br>
+                        <p>{{c.job_description}}<p>
+ 
+                      </div>
+                  
+  
+                      <div class="modal-footer justify-content-center">
+                          
+                        {% if c.id in li %}
+                        <a href="{% url 'apply' c.id %}" class="btn bord btn-lg disabled">Applied</i></a>
+                        {% else %}
+                        <a href="{% url 'apply' c.id%}" class="btn bord btn-lg">Apply</i></a>
+                        {% endif %}   
+                          
+                      </div>
+                      </form>
+  
+  
+                  </div>
+              </div>
+  
+          </div>
+        
+
+      </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+
+
+  </div>
+</div>
+<script>
+
+
+  const j = 0;
+  let i = 0
+
+  document.querySelectorAll(".formset_id").forEach(mywr)
+
+  function mycard(el) {
+
+    var items = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+    var item = items[Math.floor(Math.random() * items.length)];
+
+    el.id = `form${item}-id`
+  }
+  function mywr(element, index, arr) {
+
+    element.id = `form${i}-id`
+
+    i++;
+    if (i > 8) {
+      i = 0;
+    }
+
+  }
+
+
+  function urlreset() {
+    window.location.href = "/"
+  }
+
+</script>

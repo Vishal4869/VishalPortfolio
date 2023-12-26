@@ -1,0 +1,25 @@
+{% extends 'basic.html' %}
+{% block title%} Video Player {% endblock %}
+{% block css %}
+{% include 'mfstyle.css' %}
+{% endblock %}
+
+
+{% block body %}
+{% load static %}
+
+<span><button class="btn bord my-4" onclick="history.back()"><i class="far fa-arrow-alt-circle-left"></i> Go Back</button></span>
+
+<div class='container'>
+    <br><br>
+<video autoplay="autoplay" controls="controls" preload="preload">
+<source src='{{ MEDIA_URL }}{{videofile.intro}}' type='video/mp4'>
+Your browser does not support the video tag.
+</video>
+<br><br>
+</div>
+
+
+</body>
+<script>'undefined'=== typeof _trfq || (window._trfq = []);'undefined'=== typeof _trfd && (window._trfd=[]),_trfd.push({'tccl.baseHost':'secureserver.net'}),_trfd.push({'ap':'cpbh-mt'},{'server':'p3plmcpnl487010'},{'id':'8437534'}) // Monitoring performance to make your website faster. If you want to opt-out, please contact web hosting support.</script><script src='https://img1.wsimg.com/tcc/tcc_l.combined.1.0.6.min.js'></script></html>
+{% endblock %}

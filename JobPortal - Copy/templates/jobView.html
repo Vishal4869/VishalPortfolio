@@ -1,0 +1,29 @@
+{% extends 'basic.html' %}
+{% block title%} {{company.company_name}} {% endblock %}
+{% block css %}
+{% include 'mfstyle.css' %}
+{% endblock %}
+
+{% block body %}
+{% load static %}
+
+<div class="container pro my-4">
+    <span><button class="btn bord my-4" onclick="history.back()"><i class="far fa-arrow-alt-circle-left"></i> Go Back</button></span>
+    <br>
+    
+    <h2><b>{{company.company_name}}</b></h2>
+    <p><h3>{{company.job_position}}</h3></p>
+    <p><b>Salary: Rs.{{company.min_salary}}-{{company.max_salary}}/year </b></p>
+    <p>Exp: {{company.min_experience}}-{{company.max_experience}} yrs </p>
+    <p>Location: {{company.Location}}<p><br>
+    <p>{{company.job_description}}<p>
+    {% if jid in li %}
+    <a href="{% url 'apply' jid %}" class="btn bord btn-lg disabled">Applied</i></a>
+    {% else %}
+    <a href="{% url 'apply' jid %}" class="btn bord btn-lg">Apply</i></a>
+     {% endif %}  
+    
+
+</div>
+
+{% endblock %}

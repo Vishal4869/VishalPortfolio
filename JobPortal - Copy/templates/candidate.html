@@ -1,0 +1,183 @@
+{% extends 'basic.html' %}
+{% block title%} User{% endblock %}
+{% block css %} 
+
+{% include 'mfstyle.css' %}
+
+{% endblock %}
+{% block body %}
+{% load static %}
+{% include 'com_searchbox.html' %}
+<br>
+
+<div class="container ">
+    
+    {% if not request.user.candidates.applicant_name %}
+    <div class="alert alert-danger" role="alert">
+        Your profile is not complete.To complete your profie click <a href="{% url 'caccount' %}"> here</a>
+    </div>
+    {% endif %}
+        
+    <div class="row justify-content-center ">
+        <div class="col-md-4 col-sm-12">
+            <div class="card card-body pro">
+              <p align='center'><img class=" pro2 imgb  " src="{{request.user.candidates.profile_pic.url}}" alt="profile_pic" style="width:145px ;height=145px; border-radius= 50%"  ></p>
+              <a class="btn bord mx-5"  href="{% url 'caccount' %}"><i class="far fa-edit"></i> Edit Profile</a>
+            </div>
+          </div>
+        <div class="col-md-4">
+            <div class="card card-body pro">
+              <p><h3 style="text-align: center">Applied Jobs:</h3></p>
+              <p><h1 style="text-align: center">{{tot_li}} </h1></p>
+              <a class="btn bord mx-5" href="#jd2"> View all</a>
+              
+            </div>
+        </div>
+        <div class="col-md-4 ">
+            <div class="card card-body pro">
+              <p><h3 style="text-align: center">Recruiter's Invites:</h3></p>
+              <p><h1 style="text-align: center">{{ totaply }}</h1></p>
+              <a class="btn bord mx-5"   href="#jd3"> View all</a>
+            </div>
+        </div>
+    </div>
+</div>
+<br> <hr>   
+<div class="container ">
+    <h2 >Applied Jobs:</h2><br>
+    
+    <div class="card-body pro">
+        <div class="table-responsive-sm">
+            <table class="table table-hover"id="ctbaj" >
+                <thead>
+                    <tr>
+                        <th>Sr.No.</th>
+                        <th>Company Name:</th>
+                        <th>Job Position:</th>
+                        <th>Application Date</th>
+                        <th>Location</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for u in applied %}
+                    <tr>
+                        <td width="1%">{{ forloop.counter }}</td>
+                        <td>{{u.company_name}}</td>
+                        
+                        <td >{{u.job_position}}</td>
+                        <td>{{u.date}}</td>
+                        <td>{{u.Location}}</td>
+                        <td width="7%"><a class="btn bord text-light" data-toggle="modal" data-target="#qv{{u.id}}">
+                            <i class="fas fa-angle-double-right"> View</i></a>
+                        </td>
+                            <!--Job View-->
+
+                            <div class="modal fade " id="qv{{u.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                                <div class="modal-dialog modal-lg " role="document">
+                                    <div class="modal-content pro">
+                                        <div class="modal-header">
+                                            <h2 class="modal-title" id="exampleModalLabel"><b>{{u.company_name}}</b> </h2>
+                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">X</span>
+                                            </button>
+                                        </div>
+                    
+                                        <form method="POST" >
+                                        <div class="modal-body">
+                    
+                                            <p><h3>{{u.job_position}}</h3></p>
+                                            <p><b>Salary: Rs.{{u.min_salary}}-{{u.max_salary}}/year </b></p>
+                                            <p>Exp: {{u.min_experience}}-{{u.max_experience}} yrs </p>
+                                            <p>Location: {{c.Location}}<p><br>
+                                            <p>{{u.job_description}}<p>
+                    
+                                        </div>
+                                    
+                                        </form>
+                    
+                    
+                                    </div>
+                                </div>
+  
+                            </div>
+        
+
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            </div>
+        </div>
+  
+<hr>
+
+<div class="container pro ">
+    <h2 >Recruiter's Invites:</h2><br>
+    
+    <div class="card-body tblcss">
+        <div class="table-responsive-sm">
+
+            <table class="table table-hover " id="ctbri" >
+                <thead>
+                    <tr>
+                        <th>Sr.No.</th>
+                        <th>Company Name</th>
+                        <th>Job Position:</th>
+                        <th>Salary:</th>
+                        <th>Required Experience:</th>
+                        <th>Location</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for t in tinv %}
+                    <tr>
+                        <td width="1%">{{ forloop.counter }}</td>
+                        <td>{{t.company_name}}</td>
+                        
+                        <td >{{t.job_position}}</td>
+                        <td>{{t.min_salary}}-{{t.max_salary}}/year</td>
+                        <td>{{t.min_experience}}-{{t.max_experience}} yrs</td>
+                        <td>{{t.Location}}</td>
+                        <td width="17%">
+                            {% if t.id in li %}
+                            <a href="{% url 'apply' t.id %}" class="btn bord btn-sm disabled"><i class="fas fa-angle-double-up"> Applied</i></a>
+                            {% else %}
+                            <a href="{% url 'apply' t.id %}" class="btn bord btn-sm"><i class="fas fa-angle-double-up"> Apply</i></a>
+                            {% endif %}
+                            <a href="{% url 'jobView' t.id  %}" ><button type="button"class="btn bord btn-sm  mx-1 my-1" value="View">
+                                <i class="fas fa-angle-double-right"> View</i></button></a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+    </div>
+  </div>
+  
+<hr>
+
+<script>
+
+    $(document).ready(function() {
+        $('#ctbri').dataTable();
+    } );
+    
+    $(document).ready(function() {
+        $('#ctbaj').dataTable();
+    } );
+ 
+</script>
+
+<div class="container"><br>
+<h1>Recommended jobs: <h1>
+</div> <br>   
+{% include 'com_cards.html' %}
+{% include 'footer.html' %}
+
+
+
+{% endblock %}

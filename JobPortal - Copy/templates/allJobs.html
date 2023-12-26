@@ -1,0 +1,14 @@
+{% extends 'basic.html' %}
+{% block title%} All Jobs{% endblock %}
+{% block css %}
+{% include 'mfstyle.css' %}
+{% endblock %}
+
+{% block body %}
+{% load static %}
+
+{% include 'com_searchbox.html' %}
+{% include 'com_cards.html' %}
+{% include 'footer.html' %}
+
+{% endblock %}

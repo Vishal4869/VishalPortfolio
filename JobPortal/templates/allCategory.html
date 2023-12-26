@@ -1,0 +1,35 @@
+{% extends 'basic.html' %}
+{% block title%} Job Portal{% endblock %}
+{% block css %}
+{% include 'mfstyle.css' %}
+{% endblock %}
+
+{% block body %}
+{% load static %}
+
+{% include 'com_searchbox.html' %}
+
+  
+  <div class="container">
+   
+    <div class="row">
+        {% for c in cat %}
+            <div class="col-12 col-lg-4">
+              <div class="clr2" style="min-height: unset;">
+                <div class="card-body">
+                  <h5 style="margin-bottom: 20px">{{c.0}} ({{c.1}})</h5>
+                  <a href="{% url 'jobcategory' c.0 %}" class="btn bord">View more</a>
+                </div>
+              </div>
+            </div>
+
+      {% endfor %}
+         
+  
+    </div>
+  </div>
+
+
+{% include 'footer.html' %}
+
+{% endblock %}
