@@ -523,6 +523,45 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="modal fade " id="project-{{p.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog " role="document">
+                    <div class="modal-content prow">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">{{p.title}}</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">X</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+        
+                            <img src="{{p.pic.url}}" class="card-img-top border border-secondary pro" alt="{{p.title}}"  width="400" height="300">
+                            <br>
+                            <div class="card-body">
+                                <p class="card-text">{{p.description}}</p>
+                                    <br>
+                                {% if p.client is not null %}
+                                <h6>{{p.client}}</h6>
+                                {% endif %}
+
+                                {% if p.glink is not null %}
+                                <h6>{{p.glink}}</h6>
+                                {% endif %}
+
+        
+                            </div>
+                        </div>
+                    
+                        {% if p.vlink is not null %}
+                        <div class="modal-footer justify-content-center">
+                            <a class="btn btn-outline-info" href="{{p.vlink}}" target="_blank">Visit </a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+        
+            </div>
                 {% endfor %}
             
             </div>
