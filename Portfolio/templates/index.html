@@ -608,11 +608,11 @@
             <div class="row">
                 <div class="col-12">
                     <ul id="portfolio-filter">
-                        <li data-filter="*" class="filter-active">All</li>
-                        <li data-filter=".programming">Programming</li>
+                        <li data-filter=".programming" class="filter-active">Programming</li>
                         <li data-filter=".cloud">Cloud</li>
                         <li data-filter=".networking">Networking</li>
                         <li data-filter=".other">Other</li>
+                        <li data-filter="*" >All</li>
                     </ul>
                 </div>
             </div>
@@ -625,13 +625,12 @@
                             <img src="{{c.pic.url}}" alt="{{c.title}}" width="100%" height="300" style="object-fit: fill;">
                         </div>
                         
-                        <div class="portfolio-text rounded">
+                        <div class="portfolio-text rounded shadow">
                             
-                            <h6 ><b> {{c.title}}</b></h6>
-                            <a class="btn2 mr-0 ml-auto" href="{{c.pic.url}}" 
-                                data-lightbox="portfolio"><i class="fas fa-search-plus"></i>
-                            </a>
-                        
+                           <h6 class="mx-2"><b> {{c.title}}</b></h6>
+                            <a class="mr-0 ml-auto" href="{{c.pic.url}}" 
+                                data-lightbox="portfolio"><i class="fas fa-solid fa-expand"></i>
+                            </a> 
                         </div>
                     </div>
                 </div>
@@ -692,7 +691,7 @@
         </div>
     
         <div class="container copyright">
-            <p>&copy; <a href="#">vishalumtol.herokuapp.com</a>, All Right Reserved | Designed By Vishal Umtol</a></p>
+            <p>&copy; <a href="#">Designed By Vishal Umtol</a></p>
         </div>
     
     </div>
