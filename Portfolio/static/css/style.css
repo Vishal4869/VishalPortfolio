@@ -1678,3 +1678,9 @@ a:focus {
         padding: 0 5px;
     }
 }
+
+
+.scrollable-row {
+    max-height: 800px; /* Adjust as needed */
+    overflow-y: auto;
+  }

@@ -608,16 +608,16 @@
             <div class="row">
                 <div class="col-12">
                     <ul id="portfolio-filter">
-                        <li data-filter=".programming" class="filter-active">Programming</li>
+                        <li data-filter="*" class="filter-active" >All</li>
+                        <li data-filter=".programming" >Programming</li>
                         <li data-filter=".cloud">Cloud</li>
                         <li data-filter=".networking">Networking</li>
                         <li data-filter=".other">Other</li>
-                        <li data-filter="*" >All</li>
                     </ul>
                 </div>
             </div>
     
-            <div class="row portfolio-container">
+            <div class="row portfolio-container scrollable-row">
                 {% for c in cert %}
                 <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item {{c.filter}} ">
                     <div class="portfolio-wrap">
